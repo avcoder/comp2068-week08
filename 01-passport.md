@@ -29,6 +29,10 @@ Not only hide add/edit/delete links but Also restrict access to their respective
 
 ## Install 4 packages:
 
+`npm i passport passport-local passport-local-mongoose express-session`
+
+Examine each via https://npm.im/<package-name>
+
 1.  passport
 1.  passport-local (we're using a local store of usernames and passwords)
 1.  passport-local-mongoose (we're storing the users in our database and we're using mongodb. We're using mongoose to talk to db. We could have used something other than mongodb)
