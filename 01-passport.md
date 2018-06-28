@@ -12,7 +12,14 @@
 
 # Passport Authentication
 
-1.  Create link in nav called "Register"
+1.  Everyone [download the zip of this new summary/styling of what we've done so far](https://github.com/avcoder/lesson7starter)
+1.  Remember to `npm i`
+1.  Remember to include your variables.env
+
+### Notice:
+
+1.  It still has our Play and CRUD methods, changed Delete prompt to traditional way for now.
+1.  I created nav links called "Register" and "Login"
 1.  Create blank register.ejs page
 1.  Create link in nav called "Login"
 1.  Create blank login.ejs page
@@ -147,11 +154,13 @@ Go into Blackboard, and copy ejs code into respective ejs pages
 
 Try logging in, it will give an error.
 Go into app.js and change our error code to:
+
 ```js
-  res.render('error', { title: "Retro Games"});
+res.render('error', { title: 'Retro Games' });
 ```
 
 Then change our error.ejs to
+
 ```html
 <% include partials/header %>
 
