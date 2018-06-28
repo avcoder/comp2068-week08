@@ -18,11 +18,8 @@
 
 ### Notice:
 
-1.  It still has our Play and CRUD methods, changed Delete prompt to traditional way for now.
-1.  I created nav links called "Register" and "Login"
-1.  Create blank register.ejs page
-1.  Create link in nav called "Login"
-1.  Create blank login.ejs page
+1.  It still has our Play, Admin and CRUD methods, changed Delete prompt to traditional way for now.
+1.  I created nav links called "Register" and "Login" that lead to blank pages for now
 
 We'll now need to install some passport packages, then configure them in app.js
 Then we'll need to deal with forms in register and login pages.
