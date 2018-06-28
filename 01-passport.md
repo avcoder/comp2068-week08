@@ -20,6 +20,7 @@
 
 1.  It still has our Play, Admin and CRUD methods, changed Delete prompt to traditional way for now.
 1.  I created nav links called "Register" and "Login" that lead to blank pages for now
+1.  In app.js, for the error handling, I passed in a title as well
 
 We'll now need to install some passport packages, then configure them in app.js
 Then we'll need to deal with forms in register and login pages.
@@ -31,7 +32,7 @@ Not only hide add/edit/delete links but Also restrict access to their respective
 
 `npm i passport passport-local passport-local-mongoose express-session`
 
-Examine each via https://npm.im/<package-name>
+Examine each via https://npm.im/
 
 1.  passport
 1.  passport-local (we're using a local store of usernames and passwords)
@@ -77,6 +78,7 @@ app.use(
   })
 );
 ```
+* May have to turn eslint features off like comma-dangle `/* eslint comma-dangle: 0, indent: 0 */`
 
 We will pass in some configuration options:
 
@@ -122,7 +124,7 @@ passport-local-mongoose makes our Account model different from our other models.
 ```js
 const mongoose = require('mongoose');
 /* reference passport-local-mongoose to make this model usable for managing Users */
-const plm = require('passport-local-mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
 ```
 
 Our Game's model doesn't need that reference because it has nothing to do with authentication/passport. By requiring it here, we're telling passport, this is the model to use for our local user store.
@@ -148,6 +150,8 @@ module.exports = mongoose.model('Account', accountSchema);
 This is the final step that let's passport know, this is the model that stores User accounts.
 Then we export it. Now our app should run. Configuration part is done. We've done the hard part.
 Now we can start calling middleware functions.
+
+But before we do, everyone go to mlab, and find the particular database that you're using.  Run `nodemon` or `npm start` then refresh mlab and you will see a new `accounts` collection.  Why?  
 
 # Create register.ejs and login.ejs
 
