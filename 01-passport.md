@@ -141,4 +141,23 @@ This is the final step that let's passport know, this is the model that stores U
 Then we export it. Now our app should run. Configuration part is done. We've done the hard part.
 Now we can start calling middleware functions.
 
+# Create register.ejs and login.ejs
 
+Go into Blackboard, and copy ejs code into respective ejs pages
+
+Try logging in, it will give an error.
+Go into app.js and change our error code to:
+```js
+  res.render('error', { title: "Retro Games"});
+```
+
+Then change our error.ejs to
+```html
+<% include partials/header %>
+
+  <h1>We're sorry</h1>
+
+  <p>Your request could not be completed. Please try again.</p>
+
+<% include partials/footer %>
+```
