@@ -73,6 +73,17 @@ then change register.ejs:
 <% } %>
 ```
 
+So the error message works, But now if you click away from Register then go back to Register you get another error 'warning not defined'. Fix:
+```js
+exports.registerForm = (req, res) => {
+  res.render('register', {
+    title: 'Register',
+    warning: ''
+  });
+};
+```
+
+
 # Login
 
 We just need to pass in 3 values to authenticate.
