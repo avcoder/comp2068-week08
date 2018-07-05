@@ -27,7 +27,9 @@ exports.register = (req, res, next) => {
 ```
 
 Notice register() is a built-in method to passport-local.
-Passport will salt/hash the password but it doesn't actually store the password in a property called password, it will give it a different name, in the db.
+Passport will salt/hash the password but it doesn't actually store the password in a property called password, it will give it a different name, in the db.  
+
+* View salt/hash/pepper youtube video https://www.youtube.com/watch?v=--tnZMuoK3E
 
 So now that we've coded above, let's go to mlab and see once we register, if a new user is created.
 Q. Do you see an accounts collection? How did it get there?

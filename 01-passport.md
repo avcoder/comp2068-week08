@@ -32,6 +32,8 @@ playerSchema.methods.name = function() {
 
 # Passport Authentication
 
+* Play youtube video in Blackboard
+
 1.  Everyone [download the zip of this new summary/styling of what we've done so far](https://github.com/avcoder/lesson7starter)
 1.  Remember to `npm i`
 1.  Remember to include your variables.env
