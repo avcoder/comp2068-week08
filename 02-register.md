@@ -50,6 +50,18 @@ Let's try registering another account but using the same password, and compare h
 Now let's try registering another account but using the same username/email.
 So passport will automatically prevent duplicate usernames.
 
+So change the error handler to:
+```js
+if (err) {
+      // needed to say 'return' below otherwise node will complain that headers already sent.
+      return res.render('register', {
+        title: 'Register',
+        warning: 'Sorry, that username is already taken.  Try again.',
+        user: req.user,
+      });
+    }
+```
+
 # Login
 
 We just need to pass in 3 values to authenticate.
