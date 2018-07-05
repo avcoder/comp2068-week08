@@ -89,16 +89,21 @@ exports.registerForm = (req, res) => {
 We just need to pass in 3 values to authenticate.
 
 ```js
+const authController = require('../controllers/authController');
 /* in index.js */
 /* POST login */
-router.post(
-  '/login',
-  passport.authenticate('local', {
-    successRedirect: '/admin',
-    failureRedirect: '/login',
-    failureMessage: 'Invalid Login'
-  })
-);
+router.post('/login', authController.login);
+```
+
+In authController.js
+```js
+const passport = require('passport');
+
+exports.login = passport.authenticate('local', {
+  successRedirect: '/admin',
+  failureRedirect: '/login',
+  failureMessage: 'Invalid Login',
+});
 ```
 
 ### Login now
@@ -111,7 +116,7 @@ If you put in a valid account, it takes you to admin. You have an active session
 So we should add some code to our router.get('/login'...) in case it fails
 
 ```js
-/* in controller */
+/* in userController.js */
 const messages = req.session.messages || [];
 
 res.render('login', {
