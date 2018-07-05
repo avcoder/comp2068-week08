@@ -196,3 +196,5 @@ Then change our error.ejs to
 
 <% include partials/footer %>
 ```
+
+BREAK THEN 02-register.md
