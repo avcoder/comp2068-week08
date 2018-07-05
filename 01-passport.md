@@ -2,13 +2,33 @@
 
 # Quick midterm review
 
-## <%= %>. <%= %>
+## <%= players[i].firstName.substring(0,1) %>. <%= ... %>
+
+## <%= `${players[i].firstName.substring(0,1)}. ${...}`%>
 
 ## <% {result=code} %> <%= result %>
 
-## <%= `${}. ${}`%>
-
 ## Create custom method in model
+
+```js
+playerSchema.methods.name = function() {
+  return this.firstName.substring(0, 1) + '. ' + this.lastName;
+};
+```
+
+```html
+<td>
+  <%= Model[i].name() %>
+</td>
+```
+
+(slide --save-dev)
+
+# Another tip Use --save-dev for local installation of nodemon
+
+`npm i nodemon -D` or `npm i nodemon --save-dev`
+
+(slide ---download 7 starter template)
 
 # Passport Authentication
 
@@ -78,7 +98,8 @@ app.use(
   })
 );
 ```
-* May have to turn eslint features off like comma-dangle `/* eslint comma-dangle: 0, indent: 0 */`
+
+- May have to turn eslint features off like comma-dangle `/* eslint comma-dangle: 0, indent: 0 */`
 
 We will pass in some configuration options:
 
@@ -107,19 +128,19 @@ Now we'll create the above model. The 2nd line tells passport which model to use
 
 ```js
 /* read/write user login info to mongodb */
-passport.serializeUser(Account.serializeUser());
-passport.deserializeUser(Account.deserializeUser());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 ```
 
 So passport uses mongodb to keep track of a user's status by reading/writing their status to/from the db.
-So this is configured now, except we still need to create the account model.
+So this is configured now, except we still need to create the user model.
 
-# Account model
+# User model
 
-1.  Create models/Account.js
+1.  Create models/User.js
 
 Now remember we've used 3 of the 4 packages we've installed so far, until now.  
-passport-local-mongoose makes our Account model different from our other models.
+passport-local-mongoose makes our User model different from our other models.
 
 ```js
 const mongoose = require('mongoose');
@@ -132,26 +153,26 @@ Our Game's model doesn't need that reference because it has nothing to do with a
 ```js
 /* create the model schema */
 /* username and password are included automatically */
-const accountSchema = new mongoose.Schema({});
+const userSchema = new mongoose.Schema({});
 ```
 
-So far the above is similar to our Game model. We could do that in accountSchema for username/pwd but we don't have to.
+So far the above is similar to our Game model. We could do that in userSchema for username/pwd but we don't have to.
 Video mentioned we have helper code for that. Notice video had only nickname/birthdate but no username/pwd. He actually explained why, it's not wrong, but it's not necessary to define. Why?
-Because passport just assumes that they're there already. IF we have local accounts, then by default we have usernames and passwords.
+Because passport just assumes that they're there already. IF we have local users, then by default we have usernames and passwords.
 
 Let's now use our reference
 
 ```js
-accountSchema.plugin(plm);
+userSchema.plugin(passportLocalMongoose);
 
-module.exports = mongoose.model('Account', accountSchema);
+module.exports = mongoose.model('User', userSchema);
 ```
 
 This is the final step that let's passport know, this is the model that stores User accounts.
 Then we export it. Now our app should run. Configuration part is done. We've done the hard part.
 Now we can start calling middleware functions.
 
-But before we do, everyone go to mlab, and find the particular database that you're using.  Run `nodemon` or `npm start` then refresh mlab and you will see a new `accounts` collection.  Why?  
+But before we do, everyone go to mlab, and find the particular database that you're using. Run `nodemon` or `npm start` then refresh mlab and you will see a new `accounts` collection. Why?
 
 # Create register.ejs and login.ejs
 
