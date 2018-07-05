@@ -62,6 +62,17 @@ if (err) {
     }
 ```
 
+then change register.ejs:
+```html
+<% if(warning) { %>
+  <div class="row flex-spaces">
+    <div class="alert alert-danger">
+      <%= warning %>
+    </div>
+  </div>
+<% } %>
+```
+
 # Login
 
 We just need to pass in 3 values to authenticate.
